@@ -1,0 +1,2 @@
+rootProject.name = 'devcourse-daily'
+include 'day05-cinema'
