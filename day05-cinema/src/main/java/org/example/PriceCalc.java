@@ -5,39 +5,24 @@ import java.util.List;
 public class PriceCalc {
     String[] audienceType = {"어린이","청소년","성인","경로"};
     int[] priceArr = {8000,12000,15000,7000};
-
-    int moringPriceCalculator(int age) {
-        int price = 0;
-        if(age<=12) {
-            price = (int) (priceArr[0]*0.8);
-            System.out.println(audienceType[0]+" : "+price);
-        } else if (age<=18) {
-            price = (int) (priceArr[1]*0.8);
-            System.out.println(audienceType[1]+" : "+price);
-        } else if (age<=64) {
-            price = (int) (priceArr[2]*0.8);
-            System.out.println(audienceType[2]+" : "+price);
-        } else {
-            price = (int) (priceArr[3]*0.8);
-            System.out.println(audienceType[3]+" : "+price);
-        }
-
-        return price;
+    long sales(long price,boolean isMoringScreen) {
+        if(isMoringScreen) return (long) (price * 0.8);
+        else return price;
     }
 
-    int priceCalculator(int age) {
-        int price = 0;
+    long priceCalculator(int age,boolean isMorningScreening) {
+        long price = 0;
         if(age<=12) {
-            price = priceArr[0];
+            price = sales(priceArr[0],isMorningScreening);
             System.out.println(audienceType[0]+" : "+price);
         } else if (age<=18) {
-            price = priceArr[1];
+            price = sales(priceArr[1],isMorningScreening);
             System.out.println(audienceType[1]+" : "+price);
         } else if (age<=64) {
-            price = priceArr[2];
+            price = sales(priceArr[2],isMorningScreening);
             System.out.println(audienceType[2]+" : "+price);
         } else {
-            price = priceArr[3];
+            price = sales(priceArr[3],isMorningScreening);
             System.out.println(audienceType[3]+" : "+price);
         }
 
@@ -46,17 +31,13 @@ public class PriceCalc {
 
 
     long calculateTotalPrice(List<Integer> ageArr, char moringSet) {
-        long sum=0;
+        long sum = 0;
         boolean isMorningScreening = false;
 
-        for(int age: ageArr) {
-            if(moringSet == 'Y') isMorningScreening = true;
-
-            if(isMorningScreening) {
-                sum+= moringPriceCalculator(age);
-            } else {
-                sum+= priceCalculator(age);
-            }
+        for (int age : ageArr) {
+            if (moringSet == 'Y') isMorningScreening = true;
+            sum += priceCalculator(age, isMorningScreening);
+            return sum;
         }
 
         return sum;
