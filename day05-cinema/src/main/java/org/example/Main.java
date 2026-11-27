@@ -35,8 +35,9 @@ public class Main {
         }
 
         System.out.println("조조 여부를 적어주세요 (Y 혹은 N으로)");
-        String moringInput = sc.nextLine();
+        String moringInput;
         while (true) {
+            moringInput = sc.nextLine();
             if(moringInput.toUpperCase().equals("Y") || moringInput.toUpperCase().equals("N")) break;
             System.out.println("Y 혹은 N을 입력해주세요!");
         }
@@ -46,9 +47,18 @@ public class Main {
 
         System.out.println("사용가능 좌석");
         seatMap.available();
-        System.out.println();
-        seatMap.resevation(userCount,sc);
+
+        String recommended = seatMap.findSeats(userCount);
+        System.out.println(recommended == null
+                ? "연속된 좌석이 없습니다"
+                : "추천 시작 좌석: " + recommended);
+
+        List<String> reserved = seatMap.resevation(userCount, sc);
+
+        System.out.println("\n===== 최종 결과 =====");
+        System.out.println("인원: " + userCount + "명");
+        System.out.println("예약 좌석: " + String.join(", ", reserved));
+        System.out.println("총 금액: " + total + "원");
         seatMap.available();
-        System.out.println();
     }
 }
