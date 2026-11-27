@@ -45,16 +45,19 @@ public class Main {
         long total = priceCalc.calculateTotalPrice(ageArr,moringInput.toUpperCase().charAt(0));
         System.out.println("총합 : " + total);
 
+        // 좌석 현황과 추천
         System.out.println("사용가능 좌석");
         seatMap.available();
 
-        String recommended = seatMap.findSeats(userCount);
+        String recommended = seatMap.findConsecutive(seatMap.seatMap, userCount);
         System.out.println(recommended == null
                 ? "연속된 좌석이 없습니다"
                 : "추천 시작 좌석: " + recommended);
 
+        // 예약
         List<String> reserved = seatMap.resevation(userCount, sc);
 
+        // 최종 결과
         System.out.println("\n===== 최종 결과 =====");
         System.out.println("인원: " + userCount + "명");
         System.out.println("예약 좌석: " + String.join(", ", reserved));
