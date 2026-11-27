@@ -9,7 +9,7 @@ public class SeatMap {
 
     void available() {
         print(seatMap);
-        System.out.println("사용가능 좌석 : " + countEmpty(seatMap));
+        System.out.println("빈 좌석: " + countEmpty(seatMap));
     }
 
     List<String> resevation(int userCount, Scanner sc) {
@@ -43,20 +43,17 @@ public class SeatMap {
         return reserved;
     }
 
-    // 좌석 이름 → {행, 열}, 없거나 형식이 틀리면 null
-    int[] parse(String seat) {
+    static int[] parse(String seat) {
         seat = seat.trim().toUpperCase();
         if (!seat.matches("[A-E][1-8]")) return null;
         return new int[]{ seat.charAt(0) - 'A', seat.charAt(1) - '1' };
     }
 
-    // {행, 열} → 좌석 이름
-    String name(int r, int c) {
+    static String name(int r, int c) {
         return "" + (char) ('A' + r) + (c + 1);
     }
 
-    // 배치도 출력 (O: 빈 좌석, X: 예매)
-    void print(boolean[][] seats) {
+    static void print(boolean[][] seats) {
         System.out.print("  ");
         for (int j = 0; j < seats[0].length; j++) {
             System.out.print((j + 1) + " ");
@@ -72,8 +69,7 @@ public class SeatMap {
         }
     }
 
-    // 빈 좌석 수
-    int countEmpty(boolean[][] seats) {
+    static int countEmpty(boolean[][] seats) {
         int count = 0;
         for (boolean[] row : seats) {
             for (boolean isReserved : row) {
@@ -83,8 +79,7 @@ public class SeatMap {
         return count;
     }
 
-    // 같은 행에서 n칸 연속으로 빈 첫 좌석, 없으면 null
-    String findConsecutive(boolean[][] seats, int n) {
+    static String findConsecutive(boolean[][] seats, int n) {
         for (int i = 0; i < seats.length; i++) {
             int streak = 0;
             for (int j = 0; j < seats[i].length; j++) {

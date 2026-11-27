@@ -46,22 +46,19 @@ public class Main {
         System.out.println("총합 : " + total);
 
         // 좌석 현황과 추천
-        System.out.println("사용가능 좌석");
-        seatMap.available();
+        boolean[][] seats = seatMap.seatMap;   // 새 배열이 아니라 같은 배열
 
-        String recommended = seatMap.findConsecutive(seatMap.seatMap, userCount);
-        System.out.println(recommended == null
-                ? "연속된 좌석이 없습니다"
-                : "추천 시작 좌석: " + recommended);
+        for (String seat : new String[]{"A1", "A2", "A3", "B4"}) {
+            int[] pos = SeatMap.parse(seat);
+            seats[pos[0]][pos[1]] = true;
+        }
 
-        // 예약
-        List<String> reserved = seatMap.resevation(userCount, sc);
-
-        // 최종 결과
-        System.out.println("\n===== 최종 결과 =====");
-        System.out.println("인원: " + userCount + "명");
-        System.out.println("예약 좌석: " + String.join(", ", reserved));
-        System.out.println("총 금액: " + total + "원");
-        seatMap.available();
+        SeatMap.print(seats);
+        System.out.println("빈 좌석: " + SeatMap.countEmpty(seats));
+        System.out.println("5칸: " + SeatMap.findConsecutive(seats, 5));
+        System.out.println("6칸: " + SeatMap.findConsecutive(seats, 6));
+        System.out.println("9칸: " + SeatMap.findConsecutive(seats, 9));
+        System.out.println("F1: " + SeatMap.parse("F1"));
+        System.out.println("A9: " + SeatMap.parse("A9"));
     }
 }
