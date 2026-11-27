@@ -45,7 +45,7 @@ public class PriceCalc {
     }
 
 
-    int calculateTotalPrice(List<Integer> ageArr, char moringSet) {
+    long calculateTotalPrice(List<Integer> ageArr, char moringSet) {
         long sum=0;
         boolean isMorningScreening = false;
 
