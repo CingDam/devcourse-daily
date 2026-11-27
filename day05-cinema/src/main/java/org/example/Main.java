@@ -13,6 +13,7 @@ public class Main {
         int userCount = 0;
         List<Integer> ageArr = new ArrayList<>();
         PriceCalc priceCalc = new PriceCalc();
+        SeatMap seatMap = new SeatMap();
 
         System.out.println("인원수를 적어주세요");
         while (true) {
@@ -40,7 +41,14 @@ public class Main {
             System.out.println("Y 혹은 N을 입력해주세요!");
         }
 
-        int total = priceCalc.calculateTotalPrice(ageArr,moringInput.toUpperCase().charAt(0));
+        long total = priceCalc.calculateTotalPrice(ageArr,moringInput.toUpperCase().charAt(0));
         System.out.println("총합 : " + total);
+
+        System.out.println("사용가능 좌석");
+        seatMap.available();
+        System.out.println();
+        seatMap.resevation(userCount,sc);
+        seatMap.available();
+        System.out.println();
     }
 }
