@@ -46,7 +46,7 @@ public class PriceCalc {
 
 
     int calculateTotalPrice(List<Integer> ageArr, char moringSet) {
-        int sum=0;
+        long sum=0;
         boolean isMorningScreening = false;
 
         for(int age: ageArr) {

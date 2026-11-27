@@ -24,7 +24,6 @@ public class Main {
 
         System.out.println("각 인원의 나이를 적어주세요(띄어쓰기로 구분해주세요)");
         String[] ageInputs;
-        int inputCount = 0;
         while (true) {
             ageInputs = sc.nextLine().split(" ");
             if(ageInputs.length == userCount) break;
